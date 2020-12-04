@@ -1,3 +1,5 @@
+const { count } = require('console');
+
 main()
 
 function main(){
@@ -7,14 +9,16 @@ function main(){
     fs.readFile(fname, (err, data) => {
         if (err) throw err;
         let arr = data.toString().split("\n");
-        console.log("Part 1: " + countTrees(arr) + "\n");
+        console.log("Part 1: " + countTrees(arr, 3, 1) + "\n");
+        let num = countTrees(arr, 1, 1) * countTrees(arr, 3, 1) * countTrees(arr, 5, 1) * countTrees(arr, 7, 1) * countTrees(arr, 1, 2);
+        console.log("Part 2: " + num + "\n");
     });
 }
 
-function countTrees(data){
-    let width = data[0].length, counter = 0;
-    for (let x = 0, y = 0; y < data.length; x += 3, y++){
-        if (data[y].substring(x % width, x % width + 1) == "#") counter++;
+function countTrees(data, slopeX, slopeY){
+    let width = data[0].length, height = data.length; counter = 0;
+    for (let x = 0, y = 0; y < height; x += slopeX, y += slopeY){
+        if (data[y % height].substring(x % width, x % width + 1) == "#") counter++;
     }
     return counter;
 }
