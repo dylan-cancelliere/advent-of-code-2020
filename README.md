@@ -19,3 +19,8 @@ Navigate to the directory corresponding to the day of the challenge you wish to 
   - Day 3 was pretty uneventful. The algorithm was a pretty basic iterate through a list and check at an index problem, with the added twist of needing to use the modulus operator to 'wrap around' the array. To be clear, I did enjoy the challenge. I tend to like writing algorithms with a little math in them (although not too much)
 - Part 2
   - Not too much to add, with only a couple small modifications my original function worked perfectly for part 2 of this day. These first few challenges I've completed all on the 3rd of December, so now that I'm caught up I'm excited to see what the future  challenges are going to be
+### Day 4
+- Part 1
+  - Today was a decent uptick in difficulty. I revisited a few of the concepts I had been thinking about for earlier challenges, namely sets and regex's. The first part seemed sort of awkward to write, although my solution was decent enough. I don't frequently use while loops inside for loops in the way I did to implement this solution, but it made a lot of sense to do so and seemed to work alright
+- Part 2
+  - I'm a little conflicted on the code I wrote today. On one hand, I had a lot of fun and became more comfortable writing simple regex's. I still definitely use regexr.com for every expression I write, but I imagine that need will go away with practice. On the other hand, I had a ton of nested conditionals, and overall my code didn't feel very elegant and took a considerable amount of time to write. I think some of that was unavoidable due to the number of different conditions I had to check for, but I'm going to spend some time looking at other people's submissions tomorrow to see where I could make improvements in my code.
