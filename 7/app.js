@@ -7,7 +7,7 @@ function main() {
     fs.readFile(fname, (err, data) => {
         if (err) throw err;
         let bags = shinyGoldBag(data.toString().split("\n"));
-        console.log("Part 1: " + idk(bags) + "\n");
+        console.log("Part 1: " + findShinyGoldBags(bags) + "\n");
         console.log("Part 2: " + recursiveCounter(bags, "shinygold") + "\n");
     });
 }
@@ -28,7 +28,7 @@ function shinyGoldBag(data){
     return bags;
 }
 
-function idk(bags){
+function findShinyGoldBags(bags){
     let holdsShiny = new Set();
     for (const [key, value] of Object.entries(bags)){
         if (value["shinygold"]) holdsShiny.add(key);
@@ -55,7 +55,8 @@ function recursiveCounter(bags, bag){
         return 0;
     }
     for (const [key, value] of Object.entries(children)) {
-        counter += parseInt(value) + recursiveCounter(bags, key);
+        counter = counter + parseInt(value) + parseInt(value) * recursiveCounter(bags, key);
+        continue;
     }
     return counter;
 }
