@@ -1,3 +1,5 @@
+const { parse } = require('path');
+
 main()
 
 function main() {
@@ -7,7 +9,7 @@ function main() {
     fs.readFile(fname, (err, data) => {
         if (err) throw err;
         console.log("Part 1: " + part1(data.toString().split("\n")) + "\n");
-        //console.log("Part 2: " + part2(data.toString().split("\n")) + "\n");
+        console.log("Part 2: " + part2(data.toString().split("\n")) + "\n");
     });
 }
 
@@ -29,4 +31,20 @@ function part1(data){
         valid.push(x);
     }
     return "None found";
+}
+
+function part2(data){
+    let target = 466456641, counter, min, max;
+    for (let i = 0; i < data.length; i++){
+        counter = 0, min = parseInt(data[i]), max = 0;
+        for (let j = i; j < data.length; j++){
+            counter += parseInt(data[j]);
+            if (parseInt(data[j]) > max) max = parseInt(data[j]);
+            if (parseInt(data[j]) < min) min = parseInt(data[j]);
+            if (counter == target) {
+                return min + max;
+            }
+            if (counter > target) break;
+        }
+    }
 }
