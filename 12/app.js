@@ -57,5 +57,41 @@ function part1(data){
 }
 
 function part2(data){
+    let waypointX = 10, waypointY = 1, boatX = 0, boatY = 0;
+    data.forEach(str => {
+        let command = str.substring(0, 1);
+        let num = parseInt(str.substring(1));
 
+        switch (command){
+            case "N":
+                waypointY += num;
+                break;
+            case "S":
+                waypointY -= num;
+                break;
+            case "E":
+                waypointX += num;
+                break;
+            case "W":
+                waypointX -= num;
+                break;
+            case "L":
+                let temp = (waypointX - boatX) * Math.cos((num) * Math.PI / 180) - (waypointY - boatY) * Math.sin((num) * Math.PI / 180) + boatX;
+                waypointY = (waypointX - boatX) * Math.sin((num) * Math.PI / 180) + (waypointY - boatY) * Math.cos((num) * Math.PI / 180) + boatY;
+                waypointX = temp;
+                break;
+            case "R":
+                let temp2 = (waypointX - boatX) * Math.cos((360 - num) * Math.PI / 180) - (waypointY - boatY) * Math.sin((360 - num) * Math.PI / 180) + boatX;
+                waypointY = (waypointX - boatX) * Math.sin((360 - num) * Math.PI / 180) + (waypointY - boatY) * Math.cos((360 - num) * Math.PI / 180) + boatY;
+                waypointX = temp2;
+                break;
+            case "F":
+                let xdiff = waypointX - boatX, ydiff = waypointY - boatY;
+                boatX += xdiff * num;
+                boatY += ydiff * num;
+                waypointX += xdiff * num;
+                waypointY += ydiff * num;
+        }
+    });
+    return Math.abs(boatX) + Math.abs(boatY);
 }
