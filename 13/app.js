@@ -34,24 +34,20 @@ function part1(data) {
 }
 
 function part2(data) {
-    let times = [], timestamp, multiplier = 1, bool = true;
+    let times = [], timestamp = BigInt(0), incrementer, bool = true;
     data = data[1].split(",");
     data.forEach(time => {
         if (time == "x") times.push(time);
-        else times.push(parseInt(time));
+        else times.push(BigInt(parseInt(time)));
     })
+    incrementer = times[0]
 
-    while (bool){
-        timestamp = times[0] * multiplier;
-        bool = false;
-        for (let i = 1; i < times.length; i++){
-            if (times[i] == "x") continue;
-            else if ((timestamp + i) % times[i] != 0){
-                bool = true;
-                break;
-            }
+    for (let i = 1n; i < times.length; i++){
+        while (times[i] != "x" && (timestamp + i) % times[i] != 0n){
+            timestamp += incrementer;
         }
-        multiplier++;
+        if (times[i] != "x") incrementer *= times[i];
     }
+
     return timestamp;
 }
